@@ -1,9 +1,7 @@
 <?php
-require_once 'Scientist.php';  // Make sure the Scientist class is included
-
+require_once 'Scientist.php'; 
 class ScientistDAO {
 
-    // Method to establish a database connection
     public function getConnection() {
         $mysqli = new mysqli("127.0.0.1", "exam2user", "exam2pass", "practiceExam2");
 
@@ -13,8 +11,7 @@ class ScientistDAO {
 
         return $mysqli;
     }
-
-    // Method to add a new scientist to the database
+    
     public function addScientist($scientist) {
         $connection = $this->getConnection();
         $stmt = $connection->prepare("INSERT INTO scientists (name, timePeriod, nationality, contribution) VALUES (?, ?, ?, ?)");
@@ -29,7 +26,6 @@ class ScientistDAO {
         $connection->close();
     }
 
-    // Method to delete a scientist from the database by ID
     public function deleteScientist($id) {
         $connection = $this->getConnection();
         $stmt = $connection->prepare("DELETE FROM scientists WHERE id = ?");
@@ -39,7 +35,6 @@ class ScientistDAO {
         $connection->close();
     }
 
-    // Method to retrieve all scientists from the database
     public function getScientists() {
         $connection = $this->getConnection();
         $stmt = $connection->prepare("SELECT * FROM scientists;");
